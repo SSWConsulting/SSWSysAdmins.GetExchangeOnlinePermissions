@@ -3,3 +3,4 @@ Connect-ExchangeOnline
 Get-Mailbox -resultsize unlimited | Get-MailboxPermission | Select Identity, User, Deny, AccessRights, IsInherited| Export-Csv -Path "c:\temp\Full.csv" –NoTypeInformation
 Get-Mailbox -resultsize unlimited | Get-RecipientPermission | Select Identity, Trustee, AccessControlType, AccessRights, IsInherited| Export-Csv -Path "c:\temp\SendAs.csv" –NoTypeInformation
 Get-Mailbox | where {$_.GrantSendOnBehalfTo -ne $null} | select Name,Alias,UserPrincipalName,PrimarySmtpAddress,@{l='SendOnBehalfOf';e={$_.GrantSendOnBehalfTo -join ";"}} | Export-CSV "c:\temp\SendOnBehalf.csv"
+Disconnect-ExchangeOnline
